@@ -25,7 +25,8 @@ export const supportedLanguages: Language[] = [
   { code: 'ne', name: 'Nepali', nativeName: 'नेपाली', flag: '🇮🇳' },
   { code: 'kok', name: 'Konkani', nativeName: 'कोंकणी', flag: '🇮🇳' },
   { code: 'mni', name: 'Manipuri', nativeName: 'মৈতৈলোন্', flag: '🇮🇳' },
-  { code: 'bo', name: 'Bodo', nativeName: 'बर'', flag: '🇮🇳' },
+  { code: 'bo', name: 'Bodo', nativeName: 'बर'', flag: \'🇮🇳' },
+  }
   { code: 'doi', name: 'Dogri', nativeName: 'डोगरी', flag: '🇮🇳' },
   { code: 'mai', name: 'Maithili', nativeName: 'मैथिली', flag: '🇮🇳' }
 ];
