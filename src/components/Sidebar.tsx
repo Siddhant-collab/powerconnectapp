@@ -1,4 +1,4 @@
-import { X, Home, MapPin, FileText, AlertTriangle, CreditCard, Sun, Link, Info, User, BarChart3, FileStack, Settings, LogOut, Brain, MessageCircle, BookOpen, Map } from 'lucide-react';
+import { X, Home, MapPin, FileText, AlertTriangle, CreditCard, Sun, Link, Info, User, BarChart3, FileStack, Settings, LogOut, Brain, MessageCircle, Map } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUser } from '@/contexts/UserContext';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, onClose, onLogout, darkMode, setDarkMode, language, s
     const baseItems = [
       { icon: Home, label: t('dashboard'), path: '/' },
       { icon: MapPin, label: t('nearestOffice'), path: '/nearest-office' },
-      { icon: FileText, label: 'Complaint Tracker', path: '/register-complaint' },
+      { icon: FileText, label: t('complaintTracker'), path: '/register-complaint' },
       { icon: CreditCard, label: 'Pay Bill / Reconnection', path: '/pay-bill' },
       { icon: FileStack, label: t('documentVault'), path: '/documents' },
       { icon: Sun, label: t('solarPumpStatus'), path: '/solar-pump-status' },
@@ -39,16 +39,17 @@ const Sidebar = ({ isOpen, onClose, onLogout, darkMode, setDarkMode, language, s
     ];
 
     // Add role-specific items
-    if (user?.role === 'site_engineer' || user?.role === 'dept_head') {
+    if (user?.role === 'site_engineer') {
       baseItems.splice(2, 0, 
         { icon: Map, label: 'Incident Heatmap', path: '/incident-map' },
-        { icon: Brain, label: 'AI Forecast', path: '/ai-forecast' },
-        { icon: BookOpen, label: 'Training', path: '/training' }
+        { icon: Brain, label: 'AI Forecast', path: '/ai-forecast' }
       );
     }
 
     if (user?.role === 'dept_head') {
-      baseItems.splice(5, 0,
+      baseItems.splice(2, 0,
+        { icon: Map, label: 'Incident Heatmap', path: '/incident-map' },
+        { icon: Brain, label: 'AI Forecast', path: '/ai-forecast' },
         { icon: BarChart3, label: 'Usage Analytics', path: '/usage-analytics' }
       );
     }

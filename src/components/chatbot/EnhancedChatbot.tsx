@@ -24,7 +24,7 @@ const EnhancedChatbot = () => {
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [currentLanguage, setCurrentLanguage] = useState('kn');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -53,14 +53,19 @@ const EnhancedChatbot = () => {
   const getLocalizedText = (key: string): string => {
     const texts: Record<string, Record<string, string>> = {
       welcome: {
-        en: "Hello! I'm your Mahavitaran AI assistant. I can help you with:\n• Generate and download bills\n• Pay bills\n• Submit meter readings\n• Register complaints\n• Track applications\n• AI forecasting\n• Training modules\n\nWhat would you like to do today?",
-        hi: "नमस्ते! मैं आपका महावितरण AI सहायक हूं। मैं आपकी मदद कर सकता हूं:\n• बिल जेनरेट और डाउनलोड करें\n• बिल भुगतान\n• मीटर रीडिंग जमा करें\n• शिकायत दर्ज करें\n• आवेदन ट्रैक करें\n• AI पूर्वानुमान\n• प्रशिक्षण मॉड्यूल\n\nआज आप क्या करना चाहेंगे?",
-        kn: "ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ಮಹಾವಿತರಣ AI ಸಹಾಯಕ. ನಾನು ನಿಮಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲೆ:\n• ಬಿಲ್ ಜನರೇಟ್ ಮತ್ತು ಡೌನ್‌ಲೋಡ್\n• ಬಿಲ್ ಪಾವತಿ\n• ಮೀಟರ್ ರೀಡಿಂಗ್ ಸಲ್ಲಿಸಿ\n• ದೂರು ದಾಖಲಿಸಿ\n• ಅರ್ಜಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ\n• AI ಮುನ್ಸೂಚನೆ\n• ತರಬೇತಿ ಮಾಡ್ಯೂಲ್‌ಗಳು\n\nಇಂದು ನೀವು ಏನು ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?"
+        en: "Hello! I'm your MSEFC AI assistant. I can help you with:\n• Generate and download bills\n• Pay bills\n• Submit meter readings\n• Register complaints\n• Track applications\n• AI forecasting\n• Training modules\n\nWhat would you like to do today?",
+        kn: "ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ MSEFC AI ಸಹಾಯಕ. ನಾನು ನಿಮಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲೆ:\n• ಬಿಲ್ ಜನರೇಟ್ ಮತ್ತು ಡೌನ್‌ಲೋಡ್\n• ಬಿಲ್ ಪಾವತಿ\n• ಮೀಟರ್ ರೀಡಿಂಗ್ ಸಲ್ಲಿಸಿ\n• ದೂರು ದಾಖಲಿಸಿ\n• ಅರ್ಜಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ\n• AI ಮುನ್ಸೂಚನೆ\n• ತರಬೇತಿ ಮಾಡ್ಯೂಲ್‌ಗಳು\n\nಇಂದು ನೀವು ಏನು ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?",
+        hi: "नमस्ते! मैं आपका MSEFC AI सहायक हूं। मैं आपकी मदद कर सकता हूं:\n• बिल जेनरेट और डाउनलोड करें\n• बिल भुगतान\n• मीटर रीडिंग जमा करें\n• शिकायत दर्ज करें\n• आवेदन ट्रैक करें\n• AI पूर्वानुमान\n• प्रशिक्षण मॉड्यूल\n\nआज आप क्या करना चाहेंगे?"
       },
       billGenerated: {
         en: "I've generated your current bill. Here are the details:\n\n📄 **Bill Summary**\nConsumer: John Doe\nPeriod: June 2024\nUnits: 324 kWh\nAmount: ₹1,245\nDue Date: July 15, 2024\n\nWould you like me to download the full bill PDF?",
-        hi: "मैंने आपका वर्तमान बिल तैयार किया है। यहाँ विवरण हैं:\n\n📄 **बिल सारांश**\nउपभोक्ता: John Doe\nअवधि: जून 2024\nयूनिट: 324 kWh\nराशि: ₹1,245\nदेय तिथि: 15 जुलाई, 2024\n\nक्या आप चाहते हैं कि मैं पूरा बिल PDF डाउनलोड करूं?",
-        kn: "ನಾನು ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಬಿಲ್ ಅನ್ನು ತಯಾರಿಸಿದ್ದೇನೆ. ಇಲ್ಲಿ ವಿವರಗಳಿವೆ:\n\n📄 **ಬಿಲ್ ಸಾರಾಂಶ**\nಗ್ರಾಹಕ: John Doe\nಅವಧಿ: ಜೂನ್ 2024\nಯೂನಿಟ್‌ಗಳು: 324 kWh\nಮೊತ್ತ: ₹1,245\nದೇಯ ದಿನಾಂಕ: ಜುಲೈ 15, 2024\n\nನಾನು ಪೂರ್ಣ ಬಿಲ್ PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕೆ?"
+        kn: "ನಾನು ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಬಿಲ್ ಅನ್ನು ತಯಾರಿಸಿದ್ದೇನೆ. ಇಲ್ಲಿ ವಿವರಗಳಿವೆ:\n\n📄 **ಬಿಲ್ ಸಾರಾಂಶ**\nಗ್ರಾಹಕ: John Doe\nಅವಧಿ: ಜೂನ್ 2024\nಯೂನಿಟ್‌ಗಳು: 324 kWh\nಮೊತ್ತ: ₹1,245\nದೇಯ ದಿನಾಂಕ: ಜುಲೈ 15, 2024\n\nನಾನು ಪೂರ್ಣ ಬಿಲ್ PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕೆ?",
+        hi: "मैंने आपका वर्तमान बिल तैयार किया है। यहाँ विवरण हैं:\n\n📄 **बिल सारांश**\nउपभोक्ता: John Doe\nअवधि: जून 2024\nयूनिट: 324 kWh\nराशि: ₹1,245\nदेय तिथि: 15 जुलाई, 2024\n\nक्या आप चाहते हैं कि मैं पूरा बिल PDF डाउनलोड करूं?"
+      },
+      payBill: {
+        en: "I'll redirect you to the bill payment page where you can pay securely using UPI, cards, or net banking. Redirecting now...",
+        kn: "ನಾನು ನಿಮ್ಮನ್ನು ಬಿಲ್ ಪಾವತಿ ಪುಟಕ್ಕೆ ಮರುನಿರ್ದೇಶಿಸುತ್ತೇನೆ ಅಲ್ಲಿ ನೀವು UPI, ಕಾರ್ಡ್‌ಗಳು ಅಥವಾ ನೆಟ್ ಬ್ಯಾಂಕಿಂಗ್ ಬಳಸಿ ಸುರಕ್ಷಿತವಾಗಿ ಪಾವತಿಸಬಹುದು। ಈಗ ಮರುನಿರ್ದೇಶಿಸುತ್ತಿದ್ದೇನೆ...",
+        hi: "मैं आपको बिल भुगतान पृष्ठ पर भेज रहा हूं जहां आप UPI, कार्ड या नेट बैंकिंग का उपयोग करके सुरक्षित रूप से भुगतान कर सकते हैं। अब रीडायरेक्ट कर रहा हूं..."
       }
     };
     
@@ -84,7 +89,7 @@ const EnhancedChatbot = () => {
         case 'pay_bill':
           setTimeout(() => navigate('/pay-bill'), 1000);
           return {
-            text: getLocalizedText('payBill') || "I'll redirect you to the bill payment page where you can pay securely using UPI, cards, or net banking. Redirecting now..."
+            text: getLocalizedText('payBill')
           };
           
         case 'submit_meter_reading':
@@ -116,7 +121,7 @@ const EnhancedChatbot = () => {
   const generateDummyBill = () => {
     const billData = {
       consumerName: "John Doe",
-      consumerNo: "MSE12345678",
+      consumerNo: "MSEFC12345678",
       meterNo: "98765432",
       billingPeriod: "June 2024",
       unitsConsumed: 324,
@@ -129,7 +134,7 @@ const EnhancedChatbot = () => {
   const downloadBillPDF = () => {
     const billData = generateDummyBill();
     const billContent = `
-MAHAVITARAN ELECTRICITY BILL
+MSEFC ELECTRICITY BILL
 ═══════════════════════════════════════
 
 Consumer Name: ${billData.consumerName}
@@ -141,7 +146,7 @@ Units Consumed: ${billData.unitsConsumed} kWh
 Amount Due: ₹${billData.amount}
 Due Date: ${billData.dueDate}
 
-Thank you for using Mahavitaran!
+Thank you for using MSEFC!
 ═══════════════════════════════════════
     `;
     
@@ -149,7 +154,7 @@ Thank you for using Mahavitaran!
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `mahavitaran-bill-${billData.billingPeriod.replace(' ', '-')}.txt`;
+    a.download = `msefc-bill-${billData.billingPeriod.replace(' ', '-')}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -251,7 +256,7 @@ Thank you for using Mahavitaran!
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg flex items-center gap-2">
                 <MessageCircle size={20} />
-                Mahavitaran AI Assistant
+                MSEFC AI Assistant
               </CardTitle>
               <div className="flex items-center gap-2">
                 <select
@@ -259,9 +264,9 @@ Thank you for using Mahavitaran!
                   onChange={(e) => setCurrentLanguage(e.target.value)}
                   className="text-xs bg-white/20 text-white border-none rounded px-2 py-1"
                 >
+                  <option value="kn">ಕನ್</option>
                   <option value="en">EN</option>
                   <option value="hi">हि</option>
-                  <option value="kn">ಕನ್</option>
                 </select>
                 <button
                   onClick={() => setIsOpen(false)}

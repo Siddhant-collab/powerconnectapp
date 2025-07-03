@@ -28,8 +28,6 @@ import PayReconnection from '@/components/navigation/PayReconnection';
 import SolarPumpStatus from '@/components/navigation/SolarPumpStatus';
 import UsefulLinks from '@/components/navigation/UsefulLinks';
 import AboutUs from '@/components/navigation/AboutUs';
-import TrainingDashboard from '@/components/training/TrainingDashboard';
-import SCORMViewer from '@/components/training/SCORMViewer';
 import IncidentHeatmap from '@/components/maps/IncidentHeatmap';
 import ForecastDashboard from '@/components/ai/ForecastDashboard';
 import WhatsAppIntegration from '@/components/whatsapp/WhatsAppIntegration';
@@ -104,8 +102,8 @@ const Index = () => {
               <Menu size={24} />
             </button>
             <div>
-              <h1 className="text-lg font-bold">Mahavitaran</h1>
-              <p className="text-xs opacity-90">Analytics Platform</p>
+              <h1 className="text-lg font-bold">{t('appName')}</h1>
+              <p className="text-xs opacity-90">{t('appSubtitle')}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -155,8 +153,6 @@ const Index = () => {
             <Route path="solar-pump-status" element={<SolarPumpStatus />} />
             <Route path="useful-links" element={<UsefulLinks />} />
             <Route path="about" element={<AboutUs />} />
-            <Route path="training" element={<TrainingDashboard />} />
-            <Route path="training/module/:moduleId" element={<SCORMViewer />} />
             <Route path="incident-map" element={<IncidentHeatmap />} />
             <Route path="ai-forecast" element={<ForecastDashboard />} />
             <Route path="whatsapp" element={<WhatsAppIntegration />} />
